@@ -1,10 +1,25 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update]
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def new
     @post = Post.new
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to post_path(@post), notice: 'Post updated successfully.'
+    else
+      render :edit, alert: 'Error updating post.'
+    end
   end
 
   def create
@@ -17,6 +32,11 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
   def post_params
     params.require(:post).permit(:title, :body)
   end
