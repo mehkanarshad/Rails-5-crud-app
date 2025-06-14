@@ -5,6 +5,10 @@ ruby "3.3.1"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.5", ">= 7.1.5.1"
 gem "simple_form"
+# gem "bootstrap"
+# gem "jquery-rails"
+# gem "popper_js"
+# gem "tether-rails"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
