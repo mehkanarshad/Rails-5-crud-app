@@ -4,6 +4,9 @@
 <% if @post.image.attached? %>
     <p><%= image_tag(@post.image, style: 'width: 20%') %></p>
 <% end %>
+<% if @post.file.attached? %>
+    <p><%= link_to 'Download' , @post.file , download: '' %>
+<% end %>
 
 <%= link_to "All Posts", posts_path%>
 <%= link_to "Edit post" , edit_post_path(@post) %>
