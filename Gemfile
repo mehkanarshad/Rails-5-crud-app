@@ -32,7 +32,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem 'active_storage_validations'
 gem 'image_processing', '~> 1.2'
-
+gem 'devise'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
