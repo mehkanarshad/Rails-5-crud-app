@@ -3,5 +3,7 @@
     <%= f.input :body%>
     <%= f.input :image, as: :file %>
     <%= f.input :file, as: :file %>
+    <%= f.input :clip, as: :file %>
+    <%= f.input :thumbnail, as: :file, input_html: { multiple: true } %>
     <%= f.button :submit %>
 <%end%>

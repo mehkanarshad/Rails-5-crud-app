@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
   has_one_attached :image
   has_one_attached :file
+  has_one_attached :clip
+  has_many_attached :thumbnail_videos
   belongs_to :user, dependent: :destroy
   validates :title, presence: true, length: {maximum: 100}
   validates :body, presence: true
