@@ -3,7 +3,7 @@
 <p><%= @post.body%></p>
 <p><%= @post.user.email %></p>
 <% if @post.image.attached? %>
-    <p><%= image_tag(@post.thumbnail) %></p>
+    <p><%= image_tag(@post.image_thumbnail) %></p>
 <% end %>
 <% if @post.file.attached? %>
     <p><%= link_to 'Download' , @post.file , download: '' %>

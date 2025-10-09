@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update , :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show , :create , :new]
   def index
-    @posts = current_user.posts.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc).paginate(page: params[:page], per_page: 2)
   end
 
   def new
@@ -28,13 +28,29 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: 'Post deleted successfully.'
   end
 
+  # def create
+  #   @post = Post.new(post_params)
+  #   @post.user = current_user 
+  #   if @post.save 
+  #     redirect_to posts_path, notice: 'Post created succesfully.'
+  #   else
+  #     flash.now[:alert] = @post.errors.full_messages.to_sentence
+  #     puts @post.errors.full_messages
+  #     # render :new, alert: @post.errors.full_messages.to_sentence
+  #     redirect_to new_post_path, alert: @post.errors.full_messages.to_sentence
+
+  #   end
+  # end
+
   def create
     @post = Post.new(post_params)
-    @post.user_id = current_user.id if user_signed_in?
-    if @post.save 
-      redirect_to posts_path, notice: 'Post created succesfully.'
+    @post.user = current_user
+
+    if @post.save
+      redirect_to posts_path, notice: 'Post created successfully.'
     else
-      render :new, alert: 'Error creating post.'
+      # flash.now[:alert] = @post.errors.full_messages.to_sentence
+      render :new, status: :unprocessable_entity
     end
   end
 

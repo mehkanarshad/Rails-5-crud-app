@@ -1,9 +1,12 @@
 <%= simple_form_for(@post) do |f|%>
+    <% if flash[:alert] %>
+        <div class="alert alert-danger"><%= flash[:alert] %></div>
+    <% end %>
     <%= f.input :title%>
     <%= f.input :body%>
     <%= f.input :image, as: :file %>
     <%= f.input :file, as: :file %>
     <%= f.input :clip, as: :file %>
-    <%= f.input :thumbnail, as: :file, input_html: { multiple: true } %>
+    <%= f.input :thumbnail_videos, as: :file, input_html: { multiple: true } %>
     <%= f.button :submit %>
 <%end%>

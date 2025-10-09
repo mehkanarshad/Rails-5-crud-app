@@ -1,18 +1,19 @@
 class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
-  
+
   has_one_attached :image
   has_one_attached :file
   has_one_attached :clip
   has_many_attached :thumbnail_videos
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
+  validates :user, presence: true
   validates :title, presence: true, length: {maximum: 100}
   validates :body, presence: true
   # validates :image, content_type: ['image/png', 'image/jpg', 'image/jpeg'], size: { less_than: 5.megabytes, message: 'is too large' }
-  validates :image , content_type: ['image/png', 'image/jpeg'], size: {less_than: 5.megabytes, message: 'is too large'}
+  validates :image , content_type: ['image/png', 'image/jpeg'], size: {less_than: 20.megabytes, message: 'is too large'}
 
-  def thumbnail
+  def image_thumbnail
     return self.image.variant(resize_to_limit: [300, 300]).processed if self.image.attached?
   end
 end
