@@ -9,14 +9,10 @@
     <p><%= link_to 'Download' , @post.file , download: '' %>
 <% end %>
 
-# <% if @post.clip.attached? %>
-#     <p><%= video_tag(url_for(@post.clip), controls: true, size: "320x240") %></p>
-# <% end %>
-
 <% if @post.clip.attached? %>
-<p> <%= video_tag(url_for(@post.clip), controls: true, size: "320x420") %></p>
-<%= image_tag @post.clip %>
+    <p><%= video_tag(url_for(@post.clip), controls: true, size: "320x240") %></p>
 <% end %>
+
 
 <%= link_to "All Posts", posts_path%>
 <%= link_to "Edit post" , edit_post_path(@post) %>
