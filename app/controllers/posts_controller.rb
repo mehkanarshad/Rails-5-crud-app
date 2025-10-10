@@ -6,7 +6,8 @@ class PostsController < ApplicationController
   end
 
   def background
-    @text = `python lib/assets/background.py`
+    our_input_text = " background process"
+    @text = `python lib/assets/background.py "#{our_input_text}" `
   end
 
   def new
