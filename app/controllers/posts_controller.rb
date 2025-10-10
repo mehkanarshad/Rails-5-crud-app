@@ -5,11 +5,16 @@ class PostsController < ApplicationController
     @posts = Post.all.order(created_at: :desc).paginate(page: params[:page], per_page: 2)
   end
 
+  def background
+    @text = `python lib/assets/background.py`
+  end
+
   def new
     @post = Post.new
   end
 
   def show
+    @favorite_exists = Favorite.where(post: @post, user: current_user).exists? ? false : true
   end
 
   def edit

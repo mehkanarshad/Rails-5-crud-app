@@ -1,5 +1,6 @@
 <h1>Showing post</h1>
 <h3><%= @post.title%></h3>
+<%= link_to favorite_text, favorites_update_path(post: @post), id: "favorite_link" %>
 <p><%= @post.body%></p>
 <p><%= @post.user.email %></p>
 <% if @post.image.attached? %>
