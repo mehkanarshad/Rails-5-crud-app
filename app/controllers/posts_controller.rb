@@ -2,7 +2,13 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update , :destroy]
   before_action :authenticate_user!, except: [:index, :show , :create , :new]
   def index
-    @posts = Post.all.order(created_at: :desc).paginate(page: params[:page], per_page: 2)
+    if params.has_key?(:category)
+      @category = Category.find_by_name(params[:category])
+      # @posts = Post.where(category: @category).order(created_at: :desc).paginate(page: params[:page], per_page: 2)
+      @posts = Post.where(category: @category).order(created_at: :desc).paginate(page: params[:page],per_page: 2)
+    else
+      @posts = Post.all.order(created_at: :desc).paginate(page: params[:page], per_page: 2)
+    end
   end
 
   def background
@@ -67,7 +73,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body , :image , :file , :clip , thumbnail_videos: [])
+    params.require(:post).permit(:title, :body , :category_id, :image , :file , :clip , thumbnail_videos: [])
   end
 
 end

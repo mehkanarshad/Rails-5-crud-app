@@ -1,9 +1,31 @@
 <h1>Posts Page</h1>
 
 <%= link_to "New post" , new_post_path %>
+<%= link_to "New Category" , new_category_path %>
+
+<br>
+<hr>
+<br />
+All categories:<br/>
+
+<% Category.all.each do |category| %>
+    <p><%= link_to category.name , posts_path(category: category.name) %></p>
+<% end %>
+
+<br>
+<hr>
+<br />
+ Only display in navbar:<br/>
+<% Category.where(display_in_navbar: true).each do |category| %>
+    <%= link_to category.name , posts_path(category: category.name) %><br/>
+<% end %>
+
+<br>
+<hr>
+<br />
 
 <% @posts.each do |post|%>
-    <p>[<%= post.id %>]<%= post.title%></p>
+    <p><%= post.id %>-<%= post.title%></p>
     <p><%= post.body%></p>
     <% if post.image.attached? %>
         <p><%= link_to image_tag(post.image_thumbnail) , post %></p>
