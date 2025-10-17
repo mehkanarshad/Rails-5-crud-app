@@ -22,6 +22,8 @@ class PostsController < ApplicationController
 
   def show
     @favorite_exists = Favorite.where(post: @post, user: current_user).exists? ? false : true
+    @comment = Comment.new
+    @comments = @post.comments.order("created_at DESC")
   end
 
   def edit

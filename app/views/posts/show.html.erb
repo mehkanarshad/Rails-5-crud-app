@@ -13,8 +13,24 @@
 <% if @post.clip.attached? %>
     <p><%= video_tag(url_for(@post.clip), controls: true, size: "320x240") %></p>
 <% end %>
+<h2>Post a Comment</h2>
 
+<%= form_with(model: [@post, @comment], remote: true) do |f| %>
+    <%= f.text_field :body %>
+    <%= f.submit "Add Comment" %>
+<%end%>
+
+<h2>Comments</h2>
+
+<div id="comments-section">
+    <% @comments.each do |comment| %>
+        <%= render 'comments/comment', comment: comment %>
+    <% end %>
+</div>
+<br>
 
 <%= link_to "All Posts", posts_path%>
 <%= link_to "Edit post" , edit_post_path(@post) %>
-<%= link_to "Delete", delete_post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<%= button_to "Delete", delete_post_path(@post),
+              method: :delete,
+              data: { turbo_confirm: "Are you sure?" } %>

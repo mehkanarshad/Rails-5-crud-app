@@ -5,7 +5,8 @@ class Post < ApplicationRecord
   has_one_attached :image
   has_one_attached :file
   has_one_attached :clip
-  has_one :category , dependent: :destroy
+  belongs_to :category
+  has_many :comments , dependent: :destroy
   has_many_attached :thumbnail_videos
   belongs_to :user
   validates :user, presence: true
