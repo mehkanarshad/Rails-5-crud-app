@@ -25,11 +25,12 @@ All categories:<br/>
 <br />
 
 <% @posts.each do |post|%>
-    <p><%= post.id %>-<%= post.title%></p>
-    <p><%= post.body%></p>
     <% if post.image.attached? %>
         <p><%= link_to image_tag(post.image_thumbnail) , post %></p>
     <% end %>
+    <p><%= post.id %>-<%= post.title%></p>
+    <%= pluralize(post.comments.count , "Comments") %>
+    
     <%= link_to "Show" , post%>
     <%= link_to "Edit post" , edit_post_path(post) %>
     <%= link_to "Delete" , delete_post_path(post)%>

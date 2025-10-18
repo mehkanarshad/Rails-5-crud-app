@@ -21,6 +21,7 @@
 <%end%>
 
 <h2>Comments</h2>
+<td><%= pluralize(@post.comments.count , "Comments") %></td>
 
 <div id="comments-section">
     <% @comments.each do |comment| %>
