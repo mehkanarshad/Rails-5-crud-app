@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :comments , dependent: :destroy
 
   def username
-    self.email.split('@').first.captialize
+    self.email.split('@').first.capitalize
   end
 end
