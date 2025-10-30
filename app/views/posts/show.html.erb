@@ -15,9 +15,9 @@
 <% end %>
 <h2>Post a Comment</h2>
 
-<%= form_with(model: [@post, @comment], remote: true) do |f| %>
-    <%= f.text_field :body %>
-    <%= f.submit "Add Comment" %>
+<%= form_with(model: [@post, @comment], remote: true , class: "input-group mb-3" ) do |f| %>
+    <%= f.text_field :body , style: "height: 50px; width: 95vw; border: 1px solid #dddddd" , class: "mb-3 form-control" , placeholder: "Say something here"%>
+    <%= f.submit "Add Comment" , class: "btn btn-dark" %>
 <%end%>
 
 <h2>Comments</h2>
